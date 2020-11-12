@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} Details {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="card">
+    <div class="row no-gutters">
+        
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <img src="{% if product.image %}
+                    {{product.image.url}} {% else %}  https://bitsofco.de/content/images/2018/12/broken-1.png
+                    {%endif %}" alt="" class="card-img-top">
+                </div>
+                <div class="card-footer">
+                    <h4>Price:${{product.price}}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4>{{product.name}}</h4> 
+                    <p><a class="badge badge-primary" href="{{product.category.get_absolute_url}}" >
+                        {{product.category}}
+                    </a></p>
+                </div>
+                <div class="card-body">
+                    <p>
+                        {{product.description | linebreaks}}
+                    </p>
+
+                </div>
+            </div>
+        </div>
+   
+</div>
+</div>
+</div>
+
+{% endblock %}
