@@ -16,6 +16,12 @@ def cart_add(request,product_id):
         cd = form.cleaned_data
         cart.add(product=product, quantity = cd['quantity'], override_quantity= cd['override'])
 
+    context = {
+        'cart':cart,
+        'product':product,
+        'form':form,
+    }
+
     return redirect('cart:cart_detail')
 
 
@@ -25,7 +31,7 @@ def cart_add(request,product_id):
 def cart_delete(request,product_id):
     cart = Cart(request)
 
-    Product = get_object_or_404(Product, id = product_id)
+    product = get_object_or_404(Product, id = product_id)
 
     cart.remove(product)
 
