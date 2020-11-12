@@ -9,20 +9,23 @@
 {% endblock%}
 
 {% block content %}
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <div class="row no-gutters">
         <!--Side Bar-->
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header text-center">
+                <div class="card-header text-center bg-danger text-white">
                     <h4>category</h4>
                 </div>
                 <div class="card-body">
-                    <p><a href="" {% if not category %} class="btn btn-primary" {% endif %}>All</a></p>
+                    <p><a style="display: block !important;" href="
+                        {%url 'shop:product_list' %}" {% if not category %} class="btn btn-primary" 
+                        {%else %} btn btn-secondary {% endif %} class="btn btn-secondary">All</a></p>
                     {% for c in categories %}
                     <p>
-                        <a href="{{c.get_absolute_url}}"
-                         {%if category.slug = c.slug %} class="btn btn-primary" {% endif %}>
+                        <a href="{{c.get_absolute_url}}" style="display: block !important;"
+                         {%if category.slug == c.slug %}  class="btn btn-primary" 
+                         {%else %} btn btn-secondary {% endif %} class="btn btn-secondary">
                         {{c.name}}
                         </a>
                     </p>
@@ -35,7 +38,7 @@
         <!--Product List-->
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-center">
+                <div class="card-header text-center bg-danger text-white">
                     <h4>
                         {% if category %} {{category.name}} 
                         {%else%}
@@ -44,29 +47,35 @@
 
                     </h4>
                 </div><!--card-header-->
+             <div class="row">
                 {% for product in products %}
+                 <div class="col-md-4">
+                   
                 
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h4>
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h4>
+                                <a href="{{product.get_absolute_url}}">
+                                    {{product.name}}
+                                </a>
+                            </h4>
+                        </div>
+                        <div class="card-body text-center">
                             <a href="{{product.get_absolute_url}}">
-                                {{product.name}}
+                                <img style="max-width: 100%; height: 150px;" src="
+                                {% if product.image %} {{product.image.url}}
+                                {% else %} https://bitsofco.de/content/images/2018/12/broken-1.png {%endif %}" alt="">
                             </a>
-                        </h4>
+                        </div>
+                        <div class="card-footer text-center">
+                            <p>Price:${{product.price}} </p>
+                        </div>
                     </div>
-                    <div class="card-body text-center">
-                        <a href="{{product.get_absolute_url}}">
-                            <img style="max-width: 100%; height: 250px;" src="
-                            {% if product.image %} {{product.image.url}}
-                            {% else %} https://bitsofco.de/content/images/2018/12/broken-1.png {%endif %}" alt="">
-                        </a>
-                    </div>
-                    <div class="card-footer text-center">
-                        <p>Price:${{product.price}} </p>
-                    </div>
-                </div>
-
-                {% endfor %}
+    
+                   
+                 </div>
+                 {% endfor %}
+             </div>
 
 
             </div><!--card-->
