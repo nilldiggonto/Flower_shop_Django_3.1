@@ -10,7 +10,7 @@ def product_list(request,category_slug=None):
     products = Product.objects.filter(available=True)
 
     if category_slug:
-        categories = get_object_or_404(Category,slug= category_slug)
+        category = get_object_or_404(Category,slug= category_slug)
         products = Product.filter(category=category)
     
     template_name = 'shop/product/list.html'

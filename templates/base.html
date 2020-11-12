@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flower Shop</title>
+    <title> {% block title %} Flower Shop {% endblock %}</title>
 
     <link rel="shortcut icon" href="https://i.pinimg.com/originals/df/e4/0f/dfe40ff50f907001e3f78adf191ccc57.png" type="image/x-icon">
 
     <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.css">
-    
+
 </head>
 <body>
 
     <div class="container-fluid">
+        {% include 'partial/navbar.html' %}
         <div class="row">
             {%block content %}
 
