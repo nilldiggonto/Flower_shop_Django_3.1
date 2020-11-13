@@ -18,7 +18,7 @@ def order_create(request):
 
             #cart clear
             cart.clear()
-            return render(request,'orders/create.html',{'cart':cart,'form':form})
+            return render(request,'orders/created_yes.html',{'cart':cart,'form':form})
         else:
             form = OrderCreatedForm()
     return render(request,'orders/create.html',{'cart':cart, 'form':form})

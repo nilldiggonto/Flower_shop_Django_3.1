@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{%block title %} Order Done {% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="jumbotron">
+                <h1 class="display-3">Thank You!</h1>
+                <p class="lead">Order Successfully Done</p>
+                <hr class="my-4">
+                
+              <p class="lead">
+                  <a class="btn btn-primary btn-lg" href="#" role="button">
+                      Order Number Is: {{order.id}}
+                  </a>
+                </p>
+              </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
