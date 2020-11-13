@@ -7,6 +7,7 @@ from cart.cart import Cart
 
 def order_create(request):
     cart = Cart(request)
+    form = OrderCreatedForm()
 
     if request.method == 'POST':
         form = OrderCreatedForm(request.POST)
@@ -18,7 +19,7 @@ def order_create(request):
 
             #cart clear
             cart.clear()
-            return render(request,'orders/created_yes.html',{'cart':cart,'form':form})
+            return render(request,'orders/created_yes.html',{'order':order,'form':form})
         else:
             form = OrderCreatedForm()
     return render(request,'orders/create.html',{'cart':cart, 'form':form})
