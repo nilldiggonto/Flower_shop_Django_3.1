@@ -47,6 +47,29 @@
         </div>
    
 </div>
+    {% if recommended_products %}
+    <div class="card">
+        <div class="card-header text-center bg-info text-white">
+            <h4>Suggested Products</h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                {% for p in recommended_products %}
+                <div class="col-md-4">
+                    <a href="{{p.get_absolute_url}}">
+                        <img src="{% if p.image %} {{p.image.url}} {%else %}
+                        https://bitsofco.de/content/images/2018/12/broken-1.png {%endif %}" alt="">
+                    </a>
+                    <hr>
+                    <a href="{{p.get_absolute_url}}" class="btn btn-primary">{{p.name}}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+        
+    {% endif %}
 </div>
 </div>
 
