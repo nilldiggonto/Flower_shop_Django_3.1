@@ -15,6 +15,24 @@
     <div class="container-fluid">
         {% include 'partial/navbar.html' %}
         <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    {% with cart|length as total_items %}
+                    <div class="card-header text-center bg-dark text-white">
+                        {% if total_items > 0 %}
+                        Your cart:
+                        <a class="text-white" href="{% url 'cart:cart_detail' %}">
+                            {{total_items}} item{{total_items|pluralize}}
+
+                            Total Price: ${{cart.get_total_price}}
+                        </a>
+                        {% else %}
+                        Your Cart Is Empty
+                        {% endif %}
+                    </div>
+                    {% endwith %}
+                </div>
+            </div>
             {%block content %}
 
 
