@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Order,OrderItem
 from .forms import OrderCreatedForm
 from cart.cart import Cart
+from .tasks import order_created
 # Create your views here.
 
 
@@ -19,6 +20,7 @@ def order_create(request):
 
             #cart clear
             cart.clear()
+            order_created.delay(order.id)
             return render(request,'orders/created_yes.html',{'order':order,'form':form})
         else:
             form = OrderCreatedForm()

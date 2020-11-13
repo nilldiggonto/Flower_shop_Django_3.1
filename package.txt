@@ -1,0 +1,5 @@
+pillow
+django-bootstrap4
+celery
+rabbitmq
+flower==0.9.3
